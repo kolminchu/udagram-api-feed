@@ -32,6 +32,8 @@ postgres_dev/
 logfile
 set_env
 set_env.bat
+*configmap*
+*secret*
 
 .DS_Store
 Thumbs.db
