@@ -32,8 +32,8 @@ postgres_dev/
 logfile
 set_env
 set_env.bat
-*configmap*
-*secret*
+udagram-configmap.yml
+udagram-secret.yml
 
 .DS_Store
 Thumbs.db
