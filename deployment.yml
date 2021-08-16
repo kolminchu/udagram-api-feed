@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-feed-api
-        image: scharati/udagram-api-feed
+        image: scharati/udagram-api-feed:v1
         ports:
         - containerPort: 8080
         env:
@@ -73,7 +73,7 @@ spec:
         - name: AWS_PROFILE
           valueFrom:
             configMapKeyRef:
-              name: udagram-configmap
+              name: aws-secret
               key: AWS_PROFILE
         volumeMounts:
         - name : aws-secret
