@@ -32,7 +32,6 @@ postgres_dev/
 logfile
 set_env
 set_env.bat
-udagram-configmap.yml
 udagram-secret.yml
 aws-secret.yml
 *.secret
