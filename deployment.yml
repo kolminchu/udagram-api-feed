@@ -73,7 +73,7 @@ spec:
         - name: AWS_PROFILE
           valueFrom:
             configMapKeyRef:
-              name: aws-secret
+              name: udagram-configmap
               key: AWS_PROFILE
         volumeMounts:
         - name : aws-secret
