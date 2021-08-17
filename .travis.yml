@@ -17,7 +17,7 @@ script:
   - npm run build
   - docker --version # print the version for logging
   - docker build -t udagram-api-feed .
-  - docker tag udagram-api-feed scharati/udagram-api-feed:v5
+  - docker tag udagram-api-feed scharati/udagram-api-feed:v6
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
