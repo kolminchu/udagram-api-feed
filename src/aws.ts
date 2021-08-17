@@ -43,5 +43,6 @@ export function getPutSignedUrl( key: string ): string {
 
   logger.info("++++ getPutSignedUrl is : ++++");
   logger.info(url);
+  logger.info("++++++++++++++++++++");
   return url;
 }
