@@ -7,7 +7,8 @@ let logger = bunyan.createLogger({name: 'api-feed'});
 // Configure AWS
 const credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
 AWS.config.credentials = credentials;
-logger.info("credentials are : " + JSON.stringify(credentials));
+logger.info("++++ credentials are : ++++" );
+logger.info(JSON.stringify(credentials));
 
 export const s3 = new AWS.S3({
   signatureVersion: 'v4',
@@ -25,7 +26,8 @@ export function getGetSignedUrl( key: string ): string {
     Key: key,
     Expires: signedUrlExpireSeconds,
   });
-  logger.info("getGetSignedUrl is : "+  url);
+  logger.info("++++ getGetSignedUrl is : +++++");
+  logger.info(url);
   return url;
 }
 
@@ -39,6 +41,7 @@ export function getPutSignedUrl( key: string ): string {
     Expires: signedUrlExpireSeconds,
   });
 
-  logger.info("getPutSignedUrl is : "+  url);
+  logger.info("++++ getPutSignedUrl is : ++++");
+  logger.info(url);
   return url;
 }
