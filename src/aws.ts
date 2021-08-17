@@ -1,11 +1,13 @@
 import AWS = require('aws-sdk');
 import {config} from './config/config';
+import bunyan from 'bunyan';
 
+let logger = bunyan.createLogger({name: 'api-feed'});
 
 // Configure AWS
 const credentials = new AWS.SharedIniFileCredentials({profile: config.aws_profile});
 AWS.config.credentials = credentials;
-console.log("Credentials are : "  + JSON.stringify(credentials));
+logger.info("credentials are : " + JSON.stringify(credentials));
 
 export const s3 = new AWS.S3({
   signatureVersion: 'v4',
@@ -16,13 +18,14 @@ export const s3 = new AWS.S3({
 // Generates an AWS signed URL for retrieving objects
 export function getGetSignedUrl( key: string ): string {
   const signedUrlExpireSeconds = 60 * 5;
-  console.log("s3 is : "+  JSON.stringify(s3));
+  logger.info("s3 is : "+  JSON.stringify(s3));
   
   const url : string = s3.getSignedUrl('getObject', {
     Bucket: config.aws_media_bucket,
     Key: key,
     Expires: signedUrlExpireSeconds,
   });
+  logger.info("getGetSignedUrl is : "+  url);
   return url;
 }
 
@@ -30,9 +33,12 @@ export function getGetSignedUrl( key: string ): string {
 export function getPutSignedUrl( key: string ): string {
   const signedUrlExpireSeconds = 60 * 5;
 
-  return s3.getSignedUrl('putObject', {
+  const url =  s3.getSignedUrl('putObject', {
     Bucket: config.aws_media_bucket,
     Key: key,
     Expires: signedUrlExpireSeconds,
   });
+
+  logger.info("getPutSignedUrl is : "+  url);
+  return url;
 }
