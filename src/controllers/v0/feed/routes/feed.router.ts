@@ -4,8 +4,10 @@ import {NextFunction} from 'connect';
 import * as jwt from 'jsonwebtoken';
 import * as AWS from '../../../../aws';
 import * as c from '../../../../config/config';
+import bunyan from 'bunyan';
 
 const router: Router = Router();
+let logger = bunyan.createLogger({name: 'api-feed-feedrouter'});
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
   if (!req.headers || !req.headers.authorization) {
@@ -29,9 +31,14 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
   const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
+  logger.info("items are:");
+  logger.info(items);
   items.rows.map((item) => {
     if (item.url) {
       item.url = AWS.getGetSignedUrl(item.url);
+      logger.info("item.url is :" );
+      logger.info(item.url);
+
     }
   });
   res.send(items);

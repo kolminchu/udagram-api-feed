@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import {sequelize} from './sequelize';
 import morgan from 'morgan';
+import bunyan from 'bunyan';
 
 
 import {IndexRouter} from './controllers/v0/index.router';
@@ -10,6 +11,7 @@ import bodyParser from 'body-parser';
 import {config} from './config/config';
 import {V0_FEED_MODELS} from './controllers/v0/model.index';
 
+let logger = bunyan.createLogger({name: 'api-feed-server'});
 
 (async () => {
   await sequelize.addModels(V0_FEED_MODELS);
