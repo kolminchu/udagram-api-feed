@@ -31,7 +31,7 @@ let logger = bunyan.createLogger({name: 'api-feed-server'});
       'Access-Control-Allow-Headers'
     ],
     methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-    origin: '*',
+    origin: config.url,
   }));
 
   app.use('/api/v0/', IndexRouter);
