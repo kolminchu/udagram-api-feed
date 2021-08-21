@@ -38,6 +38,7 @@ router.get('/', async (req: Request, res: Response) => {
       item.url = AWS.getGetSignedUrl(item.url);
       logger.info("++++ item.url is : +++++" );
       logger.info(item.url);
+      logger.info("\n");
     }
   });
   res.send(items);
