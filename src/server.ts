@@ -25,10 +25,12 @@ let logger = bunyan.createLogger({ name: 'api-feed-server' });
 
   app.use(cors({
     allowedHeaders: [
-      'Origin', 'X-Requested-With',
-      'Content-Type', 'Accept',
-      'X-Access-Token', 'Authorization',
-      'Access-Control-Allow-Headers'
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "X-Access-Token",
+      "Authorization",
     ],
     methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
     origin: '*'
